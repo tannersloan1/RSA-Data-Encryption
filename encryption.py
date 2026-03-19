@@ -1,6 +1,8 @@
 fileName = input("What is your file name? ")
 
-file = open(fileName, "r")
+pt = open(fileName, "r")
+io = open("integer_output.txt", "w")
+bo = open("binary_output.txt", "w")
 
 chars = 7 # 7 characters for a 56 bit block size
 currChars = 0
@@ -8,7 +10,7 @@ currBlock = ""
 
 while True:
     while currChars != chars:
-        char = file.read(1)
+        char = pt.read(1)
 
         # Once EOF reached, pad the rest of the chars to reach 7 chars in the last block then break
         if not char:
@@ -31,8 +33,11 @@ while True:
     e = 65537
     n = 142330907879694598390734510141721402859
 
-    c = pow(decimal, e, n)
-    print(c) # For test, replace with actualy save/write command
+    integerOutput = pow(decimal, e, n)
+    io.write(str(integerOutput) + "\n")
+    binaryOutput = format(decimal, 'b') + "\n"
+    bo.write(binaryOutput)
+    
 
     currBlock = ""
     currChars = 0
