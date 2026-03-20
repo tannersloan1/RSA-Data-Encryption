@@ -1,6 +1,6 @@
-fileName = input("What is your file name? ")
+#fileName = input("What is your file name? ")
 
-pt = open(fileName, "r")
+pt = open("plaintext.txt", "r")
 io = open("integer_output.txt", "w")
 bo = open("binary_output.txt", "w")
 
@@ -29,14 +29,14 @@ while True:
 
     decimal = int(currBlock, 2)
 
-    # Hardcoded PK for now
+    # Hardcoded public key for now
     e = 65537
-    n = 142330907879694598390734510141721402859
+    n = 184046416711673963014408940636636297981
 
     integerOutput = pow(decimal, e, n)
     io.write(str(integerOutput) + "\n")
-    binaryOutput = format(decimal, 'b') + "\n"
-    bo.write(binaryOutput)
+    binaryOutput = format(integerOutput, '0128b')
+    bo.write(binaryOutput + "\n")
     
 
     currBlock = ""
@@ -44,3 +44,7 @@ while True:
 
     if not char:
         break
+
+pt.close()
+bo.close()
+io.close()
