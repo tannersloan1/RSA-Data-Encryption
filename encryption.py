@@ -7,15 +7,25 @@ bo = open("binary_output.txt", "w")
 chars = 7 # 7 characters for a 56 bit block size
 currChars = 0
 currBlock = ""
+padding = "11111111" # Pad with 'ÿ' currently since that character will never appear in my test files as of yet.
+numOfChars = 0
 
 while True:
     while currChars != chars:
         char = pt.read(1)
 
         # Once EOF reached, pad the rest of the chars to reach 7 chars in the last block then break
-        if not char:
-            # Need to add padding logic here
+        if not char and currChars > 0:
+            
+            while currChars != chars:
+                currBlock += padding
+                currChars += 1
             break
+
+        if not char and currBlock == "":
+            break
+
+        numOfChars += 1
 
         ASCII = ord(char)
         binary = format(ASCII, '08b')
@@ -38,7 +48,6 @@ while True:
     binaryOutput = format(integerOutput, '0128b')
     bo.write(binaryOutput + "\n")
     
-
     currBlock = ""
     currChars = 0
 
@@ -48,3 +57,5 @@ while True:
 pt.close()
 bo.close()
 io.close()
+
+print(numOfChars)
