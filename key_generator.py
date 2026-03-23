@@ -20,6 +20,6 @@ while True:
 
 d = pow(e, -1, z) # This solves for d from ed mod z = 1 -> d = e**(-1) mod z
 
-print(f"p value: {p}\nq value: {q}\nn value: {n}\nz value: {z}\ne value: {e}")
+print(f"p value: {p}\nq value: {q}\nn value: {n}\nz value: {z}\ne value: {e}\nd value: {d}")
 
 print(f"Public Key: {n}, {e}\nPrivate Key: {n}, {d}")
