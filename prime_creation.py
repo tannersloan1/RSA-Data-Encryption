@@ -46,7 +46,7 @@ def millerRabinTest(pp):
 
 def getPrime():
     while True:
-        bits = 64
+        bits = 1024
         pp = relativePrime(bits)
         if not millerRabinTest(pp):
             continue
