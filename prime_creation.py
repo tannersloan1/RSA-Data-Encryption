@@ -21,6 +21,9 @@ def relativePrime(bits):
         else:
             return pp
             
+# rabinTrials variable controls how accurate the number being prime is, so you could raise it above 20 but 20 trials should be way more than enough
+# 20 trials would lead to an error probability of 2^-40 aka about 1 in a trillion chance in worst case 
+# and 2^-160 aka about 1 in a 1.46 quindecillion chance in average case according to cryptography stack exachange
 def millerRabinTest(pp):
     maxDivisionsByTwo = 0
     ec = pp-1
